@@ -1,0 +1,25 @@
+{
+  "name": "snabbtech-assignment",
+  "version": "1.0.0",
+  "description": "snabbtech assessment using nodejs and mongodb ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonupk/snabbtech-assignment.git"
+  },
+  "author": "Sonu kamble",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonupk/snabbtech-assignment/issues"
+  },
+  "homepage": "https://github.com/sonupk/snabbtech-assignment#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.4"
+  }
+}
