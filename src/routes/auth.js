@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
 const nodemailer = require('nodemailer');
-
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -23,18 +23,27 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// getting all users which present in database
-router.get('/alluser-info',  async (req, res) => {
-    try {
-      const user = await userModel.find();
-  if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-       res.status(200).json({status: true, message: 'User Details', data: user});
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+
+
+// Get User Info
+router.get('/user-info', authMiddleware, async (req, res) => {
+  try {
+    const user = await userModel.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
-  });
+
+    const userInfo = {
+      email: user.email,
+     };
+res.status(200).json(userInfo);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
 
   //get user by its id
   router.get('/getUserbyid/:userId',async function (req, res) {
